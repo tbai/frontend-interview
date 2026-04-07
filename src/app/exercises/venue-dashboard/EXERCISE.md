@@ -12,7 +12,7 @@ Refactor the component so the venues are displayed as a **grid of cards** instea
 
 ### Requirements
 
-1. **Grid layout**: Display the venue cards in a 3-column grid using CSS Grid or Flexbox.
+1. **Grid layout**: Display the venue cards in a grid.
 
 2. **Card styling**: Each card should have:
    - Rounded corners, a subtle box shadow, and padding

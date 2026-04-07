@@ -1,0 +1,22 @@
+<h1>Venue Dashboard</h1>
+
+<ul class="venue-list">
+  @for (entry of venues; track entry.venue) {
+    <li>
+      <strong>{{ entry.venue }}</strong>
+      <ul>
+        @for (camera of entry.cameras; track camera.id) {
+          <li>
+            <img
+              src="https://picsum.photos/seed/{{ camera.id }}/120/80"
+              alt="{{ camera.name }}"
+              width="120"
+              height="80"
+            />
+            {{ camera.name }}
+          </li>
+        }
+      </ul>
+    </li>
+  }
+</ul>
