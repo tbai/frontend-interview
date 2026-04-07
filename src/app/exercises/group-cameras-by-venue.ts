@@ -36,6 +36,16 @@ export function groupCamerasByVenue(
   venues: Venue[],
   cameras: Camera[]
 ): GroupedVenue[] {
-  // TODO: implement this function
-  return [];
+  const camerasByVenue = cameras.reduce<Record<number, { name: string; id: number }[]>>(
+    (acc, { name, id, venueId }) => ({
+      ...acc,
+      [venueId]: [...(acc[venueId] ?? []), { name, id }],
+    }),
+    {}
+  );
+
+  return venues.map((venue) => ({
+    venue: venue.name,
+    cameras: camerasByVenue[venue.id] ?? [],
+  }));
 }

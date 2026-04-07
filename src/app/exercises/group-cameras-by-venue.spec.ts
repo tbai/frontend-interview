@@ -3,6 +3,8 @@ import {
   Venue,
   Camera,
 } from './group-cameras-by-venue';
+import venuesData from './venues.json';
+import camerasData from './cameras.json';
 
 describe('groupCamerasByVenue', () => {
   it('should group cameras under their respective venues', () => {
@@ -87,6 +89,44 @@ describe('groupCamerasByVenue', () => {
       { venue: 'Stadium', cameras: [] },
       { venue: 'Arena', cameras: [] },
     ]);
+  });
+
+  describe('with large dataset (500 venues, 10000 cameras)', () => {
+    const venues: Venue[] = venuesData;
+    const cameras: Camera[] = camerasData;
+
+    it('should return one entry per venue', () => {
+      const result = groupCamerasByVenue(venues, cameras);
+      expect(result.length).toBe(500);
+    });
+
+    it('should distribute all cameras across venues', () => {
+      const result = groupCamerasByVenue(venues, cameras);
+      const totalCameras = result.reduce((sum, v) => sum + v.cameras.length, 0);
+      expect(totalCameras).toBe(10000);
+    });
+
+    it('should assign 20 cameras to each venue', () => {
+      const result = groupCamerasByVenue(venues, cameras);
+      result.forEach((entry) => {
+        expect(entry.cameras.length).toBe(20);
+      });
+    });
+
+    it('should use venue names, not ids', () => {
+      const result = groupCamerasByVenue(venues, cameras);
+      expect(result[0].venue).toBe('Stadium 1');
+      expect(result[499].venue).toBe('Court 500');
+    });
+
+    it('should not include venueId in the camera objects', () => {
+      const result = groupCamerasByVenue(venues, cameras);
+      result.forEach((entry) => {
+        entry.cameras.forEach((cam) => {
+          expect(cam).not.toHaveProperty('venueId');
+        });
+      });
+    });
   });
 
   it('should preserve the order of venues from the input', () => {
