@@ -1,0 +1,24 @@
+<h1>Price Calculator Exercise</h1>
+
+<div class="controls">
+  <label>
+    Price
+    <input type="number" [(ngModel)]="price" step="0.01" />
+  </label>
+
+  <label>
+    Quantity
+    <input type="number" [(ngModel)]="quantity" step="1" />
+  </label>
+
+  <label>
+    Tax Rate
+    <input type="number" [(ngModel)]="taxRate" step="0.01" />
+  </label>
+</div>
+
+<app-price-calculator
+  [price]="price"
+  [quantity]="quantity"
+  [taxRate]="taxRate"
+/>

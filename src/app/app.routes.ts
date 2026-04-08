@@ -8,4 +8,11 @@ export const routes: Routes = [
         (m) => m.VenueDashboard
       ),
   },
+  {
+    path: 'price-calculator',
+    loadComponent: () =>
+      import('./exercises/price-calculator/price-calculator-page').then(
+        (m) => m.PriceCalculatorPage
+      ),
+  },
 ];

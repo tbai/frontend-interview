@@ -1,0 +1,16 @@
+.calculator {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 300px;
+}
+
+h3 {
+  margin: 0 0 12px;
+}
+
+.total {
+  font-size: 1.25rem;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
