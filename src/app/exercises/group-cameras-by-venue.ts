@@ -33,6 +33,25 @@ export interface GroupedVenue {
 }
 
 export function groupCamerasByVenue(venues: Venue[], cameras: Camera[]): GroupedVenue[] {
-  // TODO: Implement this function
+  return [];
+}
+
+/**
+ * Exercise: Last Venue Name
+ *
+ * Given a list of venues, return the name of the last venue in the list.
+ * If the list is empty, return `undefined`.
+ */
+export function getLastVenueName(venues: Venue[]): string | undefined {
+  return undefined;
+}
+
+/**
+ * Exercise: Venue Names
+ *
+ * Given a list of venues, return a new array containing only the
+ * venue names (strings).
+ */
+export function getVenueNames(venues: Venue[]): string[] {
   return [];
 }

@@ -1,5 +1,7 @@
 import {
   groupCamerasByVenue,
+  getLastVenueName,
+  getVenueNames,
   Venue,
   Camera,
 } from './group-cameras-by-venue';
@@ -148,5 +150,52 @@ describe('groupCamerasByVenue', () => {
       'Alpha Center',
       'Beta Dome',
     ]);
+  });
+});
+
+describe('getLastVenueName', () => {
+  it('should return the name of the last venue in the list', () => {
+    const venues: Venue[] = [
+      { name: 'Stadium', id: 1 },
+      { name: 'Arena', id: 2 },
+      { name: 'Court', id: 3 },
+    ];
+
+    expect(getLastVenueName(venues)).toBe('Court');
+  });
+
+  it('should return the name when list has one element', () => {
+    const venues: Venue[] = [{ name: 'Stadium', id: 1 }];
+
+    expect(getLastVenueName(venues)).toBe('Stadium');
+  });
+
+  it('should return undefined for an empty list', () => {
+    expect(getLastVenueName([])).toBeUndefined();
+  });
+});
+
+describe('getVenueNames', () => {
+  it('should return an array of venue names', () => {
+    const venues: Venue[] = [
+      { name: 'Stadium', id: 1 },
+      { name: 'Arena', id: 2 },
+      { name: 'Court', id: 3 },
+    ];
+
+    expect(getVenueNames(venues)).toEqual(['Stadium', 'Arena', 'Court']);
+  });
+
+  it('should return an empty array when given no venues', () => {
+    expect(getVenueNames([])).toEqual([]);
+  });
+
+  it('should preserve the order of venue names', () => {
+    const venues: Venue[] = [
+      { name: 'Zeta Hall', id: 3 },
+      { name: 'Alpha Center', id: 1 },
+    ];
+
+    expect(getVenueNames(venues)).toEqual(['Zeta Hall', 'Alpha Center']);
   });
 });
